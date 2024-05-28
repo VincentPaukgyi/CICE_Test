@@ -43,7 +43,7 @@ jobs:
 
     - name: Publish the project more cleanly 
       run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PackageAsSingleFile=true /p:OutDir=./PublishOutput /p:Platform="Any CPU" ./bis/website.csproj /p:DeleteExistingFiles=True /p:Configuration="Release"
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /v:detailed /p:PackageAsSingleFile=true /p:OutDir=./PublishOutput /p:Platform="Any CPU" ./bis/website.csproj /p:DeleteExistingFiles=True /p:Configuration="Release"
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
