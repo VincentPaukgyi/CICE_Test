@@ -22,11 +22,11 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2  # This action sets up MSBuild environment
 
     - name: Restore NuGet packages
-      run: msbuild -t:Restore ./bis/website.csproj
+      run: msbuild -t:Restore ./bis/website.publishproj
 
 
     - name: Build the solution
-      run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis/website.csproj
+      run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis/website.publishproj
 
     - name: Test the project (if applicable)
       run: |
@@ -40,7 +40,7 @@ jobs:
     
     - name: Pulish the project 
       run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /v:diag /p:PackageAsSingleFile=true /p:OutDir=./PublishOutput /p:Platform="Any CPU" ./bis/website.csproj /p:DeleteExistingFiles=True /p:Configuration="Release" /p:PublishProfile=./BIS/App_Data/PublishProfiles/CICD.pubxml
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /v:diag /p:PackageAsSingleFile=true /p:OutDir=./PublishOutput /p:Platform="Any CPU" ./bis/website.publishproj /p:DeleteExistingFiles=True /p:Configuration="Release" /p:PublishProfile=./BIS/App_Data/PublishProfiles/CICD.pubxml
 
 
     - name: Upload Artifact
