@@ -37,6 +37,10 @@ jobs:
       run: |
         mkdir -p ./PublishOutput
 
+    - name: Build and Publish
+      run: msbuild /p:DeployOnBuild=true /p:PublishProfile=./BIS/CICD.pubxml /p:configuration=Release /fl /flp:verbosity=diag
+      working-directory: ./BIS
+
     - name: Publish the project more cleanly
       run: |
         msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /v:diag /p:PackageAsSingleFile=true /p:OutDir=./PublishOutput /p:Platform="Any CPU" ./bis/website.publishproj /p:DeleteExistingFiles=True /p:Configuration="Release" /p:PublishProfile=./BIS/CICD.pubxml
