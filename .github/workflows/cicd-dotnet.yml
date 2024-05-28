@@ -37,10 +37,6 @@ jobs:
       run: |
         mkdir -p ./PublishOutput
 
-    - name: List output directory
-      run: |
-        ls -Force ./PublishOutput | Format-List
-
     - name: Publish the project more cleanly
       run: |
         msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl=./PublishOutput /p:Platform="Any CPU" /p:Configuration=Release ./bis/website.csproj
