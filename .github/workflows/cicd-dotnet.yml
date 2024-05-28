@@ -35,17 +35,17 @@ jobs:
 
     - name: Create directories
       run: |
-        mkdir -p ./BIS/PublishOutput
+        mkdir -p ./PublishOutput
 
     - name: Publish the project more cleanly
       run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./BIS/PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./bis/website.csproj
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./bis/website.csproj
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: build-artifact-test01
-        path: ./PublishOutput/
+        path: ./BIS/PublishOutput/
 
             #    - name: Deploy to AWS Windows Instance via SCP
         #      run: |
