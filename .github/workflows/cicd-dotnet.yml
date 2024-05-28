@@ -38,7 +38,8 @@ jobs:
         mkdir -p ./PublishOutput
 
     - name: List output directory
-      run: ls -la ./PublishOutput
+      run: |
+        Get-ChildItem -Path ./PublishOutput -Force | Format-List
 
     - name: Publish the project more cleanly
       run: |
