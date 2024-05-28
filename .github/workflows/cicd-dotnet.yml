@@ -24,7 +24,6 @@ jobs:
     - name: Restore NuGet packages
       run: msbuild -t:Restore ./bis/website.publishproj
 
-
     - name: Build the solution
       run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis/website.publishproj
 
@@ -37,11 +36,10 @@ jobs:
     - name: Create directories
       run: |
         mkdir -p ./PublishOutput
-    
-    - name: Pulish the project 
-      run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /v:diag /p:PackageAsSingleFile=true /p:OutDir=./PublishOutput /p:Platform="Any CPU" ./bis/website.publishproj /p:DeleteExistingFiles=True /p:Configuration="Release" /p:PublishProfile=./BIS/App_Data/PublishProfiles/CICD.pubxml
 
+    - name: Publish the project more cleanly
+      run: |
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./bis/website.publishproj
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
@@ -49,7 +47,7 @@ jobs:
         name: build-artifact-test01
         path: ./BIS/PublishOutput/
 
-        #    - name: Deploy to AWS Windows Instance via SCP
+            #    - name: Deploy to AWS Windows Instance via SCP
         #      run: |
         #        choco install openssh -y  # Install SSH client if not present
         #        scp -i ${{ secrets.SSH_PRIVATE_KEY_PATH }} -P 22 -o StrictHostKeyChecking=no ./PublishOutput/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/inetpub/wwwroot/
