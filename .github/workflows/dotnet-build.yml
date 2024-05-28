@@ -45,6 +45,6 @@ jobs:
         path: ./bis/PublishOutput
 
 
-        #    - name: Deploy to AWS Windows Instance via SCP
-        #      run: |
-        #        choco install openssh -y  # Install SSH client if not present
+    - name: Deploy to AWS Windows Instance via SCP
+      run: |
+        choco install openssh -y  # Install SSH client if not present
