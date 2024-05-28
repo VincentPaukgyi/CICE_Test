@@ -39,7 +39,7 @@ jobs:
 
     - name: Publish the project more cleanly
       run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /v:diag /p:PackageAsSingleFile=true /p:OutDir=./PublishOutput /p:Platform="Any CPU" ./bis/website.publishproj /p:DeleteExistingFiles=True /p:Configuration="Release" /p:PublishProfile=./BIS/App_Data/PublishProfiles/CICD.pubxml
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /v:diag /p:PackageAsSingleFile=true /p:OutDir=./PublishOutput /p:Platform="Any CPU" ./bis/website.publishproj /p:DeleteExistingFiles=True /p:Configuration="Release" /p:PublishProfile=./BIS/CICD.pubxml
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
