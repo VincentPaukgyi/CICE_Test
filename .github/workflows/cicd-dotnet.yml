@@ -45,7 +45,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: build-artifact-test01
-        path: ./BIS/PublishOutput/**
+        path: ./PublishOutput/**
 
     - name: Build the solution and check for errors
       run: msbuild /p:Configuration=Release /p:Platform="Any CPU" ./bis/website.csproj | tee build.log
