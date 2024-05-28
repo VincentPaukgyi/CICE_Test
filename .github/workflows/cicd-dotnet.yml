@@ -49,7 +49,7 @@ jobs:
         name: build-artifact-test01
         path: ./BIS/PublishOutput/
 
-            #    - name: Deploy to AWS Windows Instance via SCP
+        #    - name: Deploy to AWS Windows Instance via SCP
         #      run: |
         #        choco install openssh -y  # Install SSH client if not present
         #        scp -i ${{ secrets.SSH_PRIVATE_KEY_PATH }} -P 22 -o StrictHostKeyChecking=no ./PublishOutput/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/inetpub/wwwroot/
