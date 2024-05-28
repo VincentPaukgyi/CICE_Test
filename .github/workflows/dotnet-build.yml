@@ -17,9 +17,10 @@ jobs:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       uses: warrenbuckley/Setup-MSBuild@v1
 
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.2
      
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@latest  # Replace 'latest' with the actual latest version
+
     - name: Restore NuGet Packages
       run: nuget restore ./BIS/website.publishproj
  
