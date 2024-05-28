@@ -39,18 +39,13 @@ jobs:
 
     - name: Publish the project more cleanly
       run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl=./PublishOutput /p:Platform="Any CPU" /p:Configuration=Release ./bis/website.csproj
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./bis/website.csproj
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: build-artifact-test01
-        path: ./PublishOutput/**
-
-    - name: Build the solution and check for errors
-      run: msbuild /p:Configuration=Release /p:Platform="Any CPU" ./bis/website.csproj | tee build.log
-      continue-on-error: true
-
+        path: ./BIS/PublishOutput/
 
             #    - name: Deploy to AWS Windows Instance via SCP
         #      run: |
