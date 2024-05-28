@@ -24,6 +24,11 @@ jobs:
     - name: Restore NuGet packages
       run: msbuild -t:Restore ./bis/website.csproj
 
+    - name: Publish the project more cleanly 
+      run: |
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /v:detailed /p:PackageAsSingleFile=true /p:OutDir=./PublishOutput /p:Platform="Any CPU" ./bis/website.csproj /p:DeleteExistingFiles=True /p:Configuration="Release"
+
+
     - name: Build the solution
       run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis/website.csproj
 
@@ -40,10 +45,6 @@ jobs:
         #    - name: Publish the project more cleanly
         #      run: |
         #        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./bis/website.csproj
-
-    - name: Publish the project more cleanly 
-      run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /v:detailed /p:PackageAsSingleFile=true /p:OutDir=./PublishOutput /p:Platform="Any CPU" ./bis/website.csproj /p:DeleteExistingFiles=True /p:Configuration="Release"
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
