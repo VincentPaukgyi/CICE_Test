@@ -17,10 +17,6 @@ jobs:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       uses: warrenbuckley/Setup-MSBuild@v1
 
-
-    - name: Restore NuGet Packages
-      run: nuget restore ./BIS/website.publishproj
- 
     - name: Build and Publish Web App
       run: msbuild ./BIS/website.publishproj /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=./BIS/publish
  
