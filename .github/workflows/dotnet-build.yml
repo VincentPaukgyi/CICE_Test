@@ -18,10 +18,10 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Restore NuGet Packages
-      run: msbuild /t:Restore /p:Configuration=Release ./BIS/website.publishproj
+      run: msbuild /t:Restore /p:Configuration=Release ./website.publishproj
 
     - name: Build Solution
-      run: msbuild /p:Configuration=Release /p:VisualStudioVersion=12.0  ./BIS/website.publishproj
+      run: msbuild /p:Configuration=Release /p:VisualStudioVersion=12.0  ./website.publishproj
 
     - name: Run Tests
       run: |
@@ -30,7 +30,7 @@ jobs:
         echo "Tests would run here"
 
     - name: Publish Project
-      run: msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:OutDir=./BIS/bin/Release/Publish/  ./BIS/website.publishproj
+      run: msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:OutDir=./BIS/bin/Release/Publish/  ./website.publishproj
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
