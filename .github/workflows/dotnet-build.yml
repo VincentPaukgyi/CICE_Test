@@ -18,7 +18,7 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1
 
     - name: Build and Publish Web App
-      run: msbuild ./BIS/website.publishproj /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=./BIS/publish
+      run: msbuild /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=./BIS/publish website.publishproj 
  
     - name: Upload Artifact
       uses: actions/upload-artifact@v1.0.0
