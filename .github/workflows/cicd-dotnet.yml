@@ -49,7 +49,6 @@ jobs:
         name: build-artifact-test01
         path: ./bis/PublishOutput/**/*.dll
         path: ./bis/PublishOutput/**/*.exe
-        path: ./bis/PublishOutput/**/*.config
 
             #    - name: Deploy to AWS Windows Instance via SCP
         #      run: |
