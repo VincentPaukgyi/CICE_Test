@@ -1,0 +1,57 @@
+name: .NET Framework CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Restore NuGet Packages
+      run: msbuild /t:Restore /p:Configuration=Release ./BIS/BIS.sln
+
+    - name: Build Solution
+      run: msbuild /p:Configuration=Release /p:VisualStudioVersion=12.0  ./BIS/BIS.sln
+
+    - name: Run Tests
+      run: |
+        # Add your testing commands here
+        # Example: "msbuild /t:VSTest YourTestProject.csproj"
+        echo "Tests would run here"
+
+    - name: Publish Project
+      run: msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:OutDir=./BIS/bin/Release/Publish/  ./BIS/BIS.sln
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: Published-App
+        path: ./BIS/bin/Release/Publish/
+
+        #    - name: Install SSH Client
+        #      run: choco install openssh -y
+        #
+      #    - name: Copy Files to Server
+      #      run: |
+      #        scp -i ${{ secrets.SSH_PRIVATE_KEY }} -P 22 -o StrictHostKeyChecking=no ./BIS/bin/Release/Publish/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/inetpub/wwwroot/
+      #      shell: pwsh
+      #
+      #    - name: Restart IIS
+      #      run: |
+      #        ssh -i ${{ secrets.SSH_PRIVATE_KEY }} -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "iisreset"
+      #      shell: pwsh
+      #
+      #env:
+      #  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      #  USERNAME: ${{ secrets.SERVER_USERNAME }}
+      #  HOST: ${{ secrets.SERVER_ADDRESS }}
