@@ -1,50 +1,30 @@
-name: .NET Framework CI/CD Pipeline to AWS Windows Instance
-
-on:
-  push:
-    branches:
-      - main
-      - feature/*
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
-
+name: Build Web App
+ 
+on: [push]
+ 
 jobs:
-  build-and-deploy:
-    runs-on: windows-latest  # Ensure to run on Windows as .NET Framework is Windows-specific
-
+  build:
+ 
+    runs-on: windows-latest
+ 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.0.2  # This action sets up MSBuild environment
-
-    - name: Restore NuGet packages
-      run: msbuild -t:Restore ./BIS/website.publishproj
-
-    - name: Build the solution
-      run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./BIS/website.publishproj
-
-    - name: Test the project (if applicable)
-      run: |
-        # Add your testing commands here
-        # Example: "msbuild /t:VSTest YourTestProject.csproj"
-        echo "Placeholder for test commands"
-
-    - name: Publish the project
-      run: |
-        # Example publish command
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:OutDir=./PublishOutput /p:Platform="Any CPU" ./BIS/website.publishproj 
-
+    - uses: actions/checkout@v1
+      name: Checkout Code
+     
+    - name: Setup MSBuild Path
+      uses: warrenbuckley/Setup-MSBuild@v1
+       
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.2
+     
+    - name: Restore NuGet Packages
+      run: nuget restore ./BIS/website.publishproj
+ 
+    - name: Build and Publish Web App
+      run: msbuild ./BIS/website.publishproj /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=./BIS/publish
+ 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v1.0.0
       with:
-        name: build-artifact-test01
-        path: ./bis/PublishOutput
-
-
-    - name: Deploy to AWS Windows Instance via SCP
-      run: |
-        choco install openssh -y  # Install SSH client if not present
+        name: published_webapp
+        path: ./BIS/publish
