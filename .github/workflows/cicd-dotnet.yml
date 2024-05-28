@@ -38,7 +38,8 @@ jobs:
         mkdir -p ./PublishOutput
 
     - name: Build and Publish
-      run: msbuild /p:DeployOnBuild=true /p:PublishProfile=./BIS/CICD.pubxml /p:configuration=Release /fl /flp:verbosity=diag
+      run: |
+        msbuild /p:DeployOnBuild=true /p:PublishProfile=./BIS/CICD.pubxml /p:configuration=Release /fl /flp:verbosity=diag
       working-directory: ./BIS
 
     - name: Publish the project more cleanly
