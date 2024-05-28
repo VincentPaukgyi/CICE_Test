@@ -22,10 +22,10 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2  # This action sets up MSBuild environment
 
     - name: Restore NuGet packages
-      run: msbuild -t:Restore ./bis/website.publishproj
+      run: msbuild -t:Restore ./bis/website.csproj
 
     - name: Build the solution
-      run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis/website.publishproj
+      run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis/website.csproj
 
     - name: Test the project (if applicable)
       run: |
@@ -33,18 +33,24 @@ jobs:
         # Example: "msbuild /t:VSTest YourTestProject.csproj"
         echo "Placeholder for test commands"
 
-    - name: Publish the project
+    - name: Create directories
       run: |
-        # Example publish command
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:OutDir=./PublishOutput /p:Platform="Any CPU" ./bis/website.publishproj 
+        mkdir -p ./PublishOutput/FinalPublishOutput
+        mkdir -p ./BuildOutput
+
+    - name: Publish the project more cleanly
+      run: |
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./bis/website.csproj
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: build-artifact-test01
-        path: ./bis/PublishOutput 
+        path: ./bis/PublishOutput/**/*.dll
+        path: ./bis/PublishOutput/**/*.exe
+        path: ./bis/PublishOutput/**/*.config
 
-        #    - name: Deploy to AWS Windows Instance via SCP
+            #    - name: Deploy to AWS Windows Instance via SCP
         #      run: |
         #        choco install openssh -y  # Install SSH client if not present
         #        scp -i ${{ secrets.SSH_PRIVATE_KEY_PATH }} -P 22 -o StrictHostKeyChecking=no ./PublishOutput/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/inetpub/wwwroot/
