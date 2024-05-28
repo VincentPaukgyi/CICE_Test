@@ -47,8 +47,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: build-artifact-test01
-        path: ./bis/PublishOutput/**/*.dll
-        path: ./bis/PublishOutput/**/*.exe
+        path: ./bis/PublishOutput/
 
             #    - name: Deploy to AWS Windows Instance via SCP
         #      run: |
