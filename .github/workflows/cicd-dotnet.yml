@@ -22,7 +22,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2  # This action sets up MSBuild environment
 
     - name: Restore NuGet packages
-      run: nuget Restore ./BIS/BIS.sln -PackagesDirectory ./LLL
+      run: nuget Restore ./BIS.sln -PackagesDirectory ./LLL
       shell: pwsh
 
     - name: Check working directory
@@ -32,7 +32,7 @@ jobs:
       #      run: msbuild -t:Restore ./bis/website.publishproj
       #
     - name: Build the solution
-      run: msbuild /p:Configuration=Release /p:Platform="Any CPU" /p:PrecompileBeforePublish=true ./BIS/BIS.sln
+      run: msbuild /p:Configuration=Release /p:Platform="Any CPU" /p:PrecompileBeforePublish=true ./BIS.sln
 
     - name: Test the project (if applicable)
       run: |
@@ -46,7 +46,7 @@ jobs:
 
     - name: Publish the project more cleanly
       run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./BIS/BIS.sln 
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./BIS.sln 
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
