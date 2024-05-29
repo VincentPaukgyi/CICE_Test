@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BIS", "BIS\", "{B6AE656E-CDE9-47F3-9C87-05CFAA0A5FA5}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8.1"
+		Debug.AspNetCompiler.VirtualPath = "/BIS"
+		Debug.AspNetCompiler.PhysicalPath = "BIS\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\BIS\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/BIS"
+		Release.AspNetCompiler.PhysicalPath = "BIS\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\BIS\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "2114"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6AE656E-CDE9-47F3-9C87-05CFAA0A5FA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6AE656E-CDE9-47F3-9C87-05CFAA0A5FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6AE656E-CDE9-47F3-9C87-05CFAA0A5FA5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6AE656E-CDE9-47F3-9C87-05CFAA0A5FA5}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13DAD2EB-F576-4D0E-A23B-4B1B9EB95B94}
+	EndGlobalSection
+EndGlobal
