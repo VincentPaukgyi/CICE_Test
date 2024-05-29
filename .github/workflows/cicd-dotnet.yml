@@ -25,6 +25,9 @@ jobs:
       run: nuget Restore ./BIS.sln -PackagesDirectory ./BIS
       shell: pwsh
 
+    - name: Check working directory
+      run: pwd
+
       #    - name: Restore NuGet packages
       #      run: msbuild -t:Restore ./bis/website.publishproj
       #
