@@ -23,7 +23,6 @@ jobs:
 
     - name: Restore NuGet packages
       run: nuget Restore ./bis/BIS.sln
-      #run: nuget Restore ./bis/BIS.sln -PackagesDirectory ./BIS
       shell: pwsh
 
       #    - name: Restore NuGet packages
