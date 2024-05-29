@@ -23,6 +23,7 @@ jobs:
 
     - name: Restore NuGet packages
       run: nuget Restore ./bis/website.publishproj
+      shell: pwsh
 
       #    - name: Restore NuGet packages
       #      run: msbuild -t:Restore ./bis/website.publishproj
