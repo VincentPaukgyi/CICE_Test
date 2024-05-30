@@ -18,16 +18,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: NuGet setup
+      run: NuGet/setup-nuget@v1.0.5
+
     - name: Setup MSBuild Environment
       uses: microsoft/setup-msbuild@v1.0.2
 
-    - name: List directory contents (Debugging)
-      run: ls -R
-      shell: pwsh
-
-    - name: Restore NuGet packages
-      run: msbuild /t:Restore ./BIS/bis.sln
-      shell: pwsh
+    - name: Restore Packages
+      run: nuget restore ./BIS/BIS.sln
 
     - name: Build the .NET Framework project
       run: msbuild /p:Configuration=Release /p:Platform="Any CPU" ./bis.sln
