@@ -26,7 +26,7 @@ jobs:
       shell: pwsh
 
     - name: Restore NuGet packages
-      run: msbuild -t:Restore ./BIS/bis.sln
+      run: nuget Restore ./BIS/bis.sln
       shell: pwsh
 
     - name: Build the .NET Framework project
