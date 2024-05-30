@@ -25,7 +25,7 @@ jobs:
       run: nuget restore ${{ github.workspace }}/BIS/bis.sln
 
     - name: Build the solution
-      run: msbuild /p:Configuration=Release /p:Platform="Any CPU" ${{ github.workspace }}/BIS/bis.sln /fl /flp:verbosity=detailed
+      run: msbuild /p:Configuration=Release /p:Platform="Any CPU" ./BIS/bis.sln /fl /flp:verbosity=detailed
 
     - name: Test the project (if applicable)
       run: |
@@ -39,7 +39,7 @@ jobs:
 
     - name: Publish the project more cleanly
       run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ${{ github.workspace }}/BIS/bis.sln
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./BIS/bis.sln
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
