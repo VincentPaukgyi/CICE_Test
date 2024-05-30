@@ -26,7 +26,9 @@ jobs:
       shell: pwsh
 
     - name: Restore NuGet packages
-      run: nuget restore ./bis.sln
+      run: |
+        nuget restore ./bis.sln -SolutionDirectory ${{ github.workspace }}
+      shell: pwsh 
 
     - name: Build the solution
       run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis.sln
