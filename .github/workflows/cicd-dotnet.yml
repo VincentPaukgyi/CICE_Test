@@ -21,10 +21,10 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.0.2  # This action sets up MSBuild environment
 
-    - name: Install NuGet Client
-      run: choco install nuget.commandline
-      shell: pwsh
-
+      #    - name: Install NuGet Client
+      #      run: choco install nuget.commandline
+      #      shell: pwsh
+      #
     - name: Build the solution
       run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis.sln
 
