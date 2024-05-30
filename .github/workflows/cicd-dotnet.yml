@@ -21,6 +21,10 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.0.2  # This action sets up MSBuild environment
 
+    - name: Install NuGet Client
+      run: choco install nuget.commandline
+      shell: pwsh
+
     - name: Restore NuGet packages
       run: msbuild -t:Restore ./bis.sln
 
