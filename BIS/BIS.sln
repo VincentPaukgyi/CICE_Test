@@ -4,9 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BIS", "BIS\", "{B6AE656E-CDE9-47F3-9C87-05CFAA0A5FA5}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8.1"
-		Release.AspNetCompiler.VirtualPath = "/BBB"
-		Release.AspNetCompiler.PhysicalPath = "aaa\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\sss\"
+		Release.AspNetCompiler.VirtualPath = "BIS\"
+		Release.AspNetCompiler.PhysicalPath = "BIS\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\BIS\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
