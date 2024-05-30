@@ -22,10 +22,10 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2  # This action sets up MSBuild environment
 
     - name: Restore NuGet packages
-      run: msbuild -t:Restore ./bis/website.publishproj
+      run: msbuild -t:Restore ./bis/bis.sln
 
     - name: Build the solution
-      run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis/website.publishproj /p:OutDir=\artifacts\ /t:Package -restore 
+      run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis/bis.sln
 
     - name: Test the project (if applicable)
       run: |
@@ -39,13 +39,13 @@ jobs:
 
     - name: Publish the project more cleanly
       run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=\artifacts\ /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./bis/website.publishproj
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./bis/bis.sln
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: build-artifact-test01
-        path: ./BIS/artifacts/
+        path: ./BIS/PublishOutput/
 
             #    - name: Deploy to AWS Windows Instance via SCP
         #      run: |
