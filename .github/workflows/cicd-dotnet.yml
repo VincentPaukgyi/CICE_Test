@@ -22,10 +22,10 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2  # This action sets up MSBuild environment
 
     - name: Restore NuGet packages
-      run: nuget restore ./BIS/bis.sln
+      run: nuget restore ./bis.sln
 
     - name: Build the solution
-      run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./BIS/bis.sln /fl /flp:verbosity=detailed
+      run: msbuild /p:Configuration=Release /p:Platform="Any CPU" ./bis.sln /fl /flp:verbosity=detailed
 
     - name: Test the project (if applicable)
       run: |
@@ -39,7 +39,7 @@ jobs:
 
     - name: Publish the project more cleanly
       run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./BIS/bis.sln
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./bis.sln
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
