@@ -25,11 +25,6 @@ jobs:
       run: choco install nuget.commandline
       shell: pwsh
 
-    - name: Restore NuGet packages
-      run: |
-        nuget restore ./bis.sln -SolutionDirectory ${{ github.workspace }}/BIS/
-      shell: pwsh 
-
     - name: Build the solution
       run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis.sln
 
