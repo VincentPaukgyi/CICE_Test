@@ -27,7 +27,7 @@ jobs:
 
     - name: Restore NuGet packages
       run: |
-        nuget restore ./bis.sln -SolutionDirectory ${{ github.workspace }}
+        nuget restore ./bis.sln -SolutionDirectory ${{ github.workspace }}/BIS/
       shell: pwsh 
 
     - name: Build the solution
