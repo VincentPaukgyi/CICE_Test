@@ -1,0 +1,12 @@
+version: 0.0
+os: windows
+files:
+  - source: \artifacts\_PublishedWebsites\
+    destination: c:\inetpub\wwwroot\
+file_exists_behavior: OVERWRITE
+
+#hooks:
+#  BeforeInstall:
+#    - location: \Scripts\stop-iis-website.ps1
+#  AfterInstall:
+#    - location: \Scripts\start-iis-website.ps1

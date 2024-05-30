@@ -1,65 +1,13 @@
-name: .NET Framework CI/CD Pipeline to AWS Windows Instance
-
-on:
-  push:
-    branches:
-      - main
-      - feature/*
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
-
-jobs:
-  build-and-deploy:
-    runs-on: windows-latest  # Ensure to run on Windows as .NET Framework is Windows-specific
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.0.2  # This action sets up MSBuild environment
-    
-    - name: Build the solution
-      run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis.sln
-
-    - name: Test the project (if applicable)
-      run: |
-        # Add your testing commands here
-        # Example: "msbuild /t:VSTest YourTestProject.csproj"
-        echo "Placeholder for test commands"
-
-    - name: Create directories
-      run: |
-        mkdir -p ./PublishOutput
-
-    - name: Publish the project more cleanly
-      run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=false /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:IncludeSetAclProviderOnDestination=False ./bis.sln
-
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: build-artifact-test01
-        path: ./bis/PublishOutput/
-
-            #    - name: Deploy to AWS Windows Instance via SCP
-        #      run: |
-        #        choco install openssh -y  # Install SSH client if not present
-        #        scp -i ${{ secrets.SSH_PRIVATE_KEY_PATH }} -P 22 -o StrictHostKeyChecking=no ./PublishOutput/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/inetpub/wwwroot/
-        #      shell: pwsh
-        #      env:
-        #        SSH_PRIVATE_KEY_PATH: ${{ secrets.SSH_PRIVATE_KEY }}
-        #        USERNAME: ${{ secrets.SERVER_USERNAME }}
-        #        HOST: ${{ secrets.SERVER_ADDRESS }}
-        #
-        #    - name: Restart IIS to apply changes
-        #      run: |
-        #        ssh -i ${{ secrets.SSH_PRIVATE_KEY_PATH }} -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "iisreset"
-        #      shell: pwsh
-        #      env:
-        #        SSH_PRIVATE_KEY_PATH: ${{ secrets.SSH_PRIVATE_KEY }}
-        #        USERNAME: ${{ secrets.SERVER_USERNAME }}
-        #        HOST: ${{ secrets.SERVER_ADDRESS }}
-        #
+version: 0.2
+phases:
+build:
+commands:
+- msbuild ./BIS/website.publishproj /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:OutDir=\artifacts\ /t:Package -restore
+artifacts:
+files:
+- \artifacts\_PublishedWebsites\Test.Web\**\*
+- appspec.yml
+- Scripts\**\*
+exclude-paths:
+- \artifacts\_PublishedWebsites\Test.Web\*.config
+- \artifacts\_PublishedWebsites\Test.Web\*.cs
