@@ -22,7 +22,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2  # This action sets up MSBuild environment
 
     - name: Restore NuGet packages
-      run: msbuild -t:Restore ./bis/bis.sln
+      run: msbuild -t:Restore ./BIS/bis.sln
 
     - name: Restore nuget packages
       run: nuget restore ./BIS.sln 
