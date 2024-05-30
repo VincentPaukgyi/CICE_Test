@@ -30,7 +30,7 @@ jobs:
       shell: pwsh
 
     - name: Build the .NET Framework project
-      run: msbuild /p:Configuration=Release /p:Platform="Any CPU" ./BIS/bis.sln
+      run: msbuild /p:Configuration=Release /p:Platform="Any CPU" ./bis.sln
       shell: pwsh
 
     # Optional: Add steps for testing if you have tests configured
