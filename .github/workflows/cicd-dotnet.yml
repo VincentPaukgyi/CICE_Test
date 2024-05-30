@@ -21,6 +21,10 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.0.2  # This action sets up MSBuild environment
 
+    - name: Deatiled directory listing 
+      run: find . -type d
+      shell: pwsh
+
     - name: List directory contents
       run: |
         pwd
