@@ -24,6 +24,9 @@ jobs:
     - name: Restore NuGet packages
       run: msbuild -t:Restore ./bis/bis.sln
 
+    - name: Restore nuget packages
+      run: nuget restore ./BIS.sln 
+
     - name: Build the solution
       run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis.sln
 
