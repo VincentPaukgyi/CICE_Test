@@ -26,7 +26,7 @@ jobs:
       shell: pwsh
 
     - name: Restore NuGet packages
-      run: msbuild -t:Restore ./bis.sln
+      run: nuget restore ./bis.sln
 
     - name: Build the solution
       run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis.sln
