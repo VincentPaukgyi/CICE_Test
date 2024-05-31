@@ -25,7 +25,7 @@ jobs:
       run: nuget Restore BIS.sln #-PackagesDirectory ./bis/website.publishproj
 
     - name: Build the solution
-      run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./bis/website.publishproj
+      run: msbuild /p:Configuration=Release /p:Platform="Any CPU"  ./BIS/website.publishproj
 
     - name: Test the project (if applicable)
       run: |
@@ -39,7 +39,7 @@ jobs:
 
     - name: Publish the project more cleanly
       run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PackageAsSingleFile=false /p:Configuration=Release /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./bis/website.publishproj
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PackageAsSingleFile=false /p:Configuration=Release /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./BIS/website.publishproj
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
