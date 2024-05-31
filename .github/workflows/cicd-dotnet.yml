@@ -35,11 +35,11 @@ jobs:
 
     - name: Create directories
       run: |
-        mkdir -p ./BIS/PublishOutput
+        mkdir -p ./PublishOutput
 
     - name: Publish the project more cleanly
       run: |
-        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PackageAsSingleFile=false /p:Configuration=Release /p:OutDir=./BIS/PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./BIS/website.publishproj
+        msbuild /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PackageAsSingleFile=false /p:Configuration=Release /p:OutDir=./PublishOutput /p:Platform="Any CPU" /p:ExcludeFoldersFromDeployment="App_Data" /p:IncludeSetAclProviderOnDestination=False ./BIS.sln 
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
