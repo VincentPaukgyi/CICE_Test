@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BIS", ".\BIS.sln", "{B6AE656E-CDE9-47F3-9C87-05CFAA0A5FA5}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BISS", ".\BIS.sln", "{B6AE656E-CDE9-47F3-9C87-05CFAA0A5FA5}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8.1"
 		Release.AspNetCompiler.VirtualPath = "BIS\"
