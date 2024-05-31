@@ -10,7 +10,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = ".\BIS", ".\BIS.sln", "{B6AE
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
+		Release.AspNetCompiler.Release = "true"
 		VWDPort = "2114"
 	EndProjectSection
 EndProject
